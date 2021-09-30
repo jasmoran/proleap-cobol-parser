@@ -1593,11 +1593,11 @@ inspectReplacingCharacters
    ;
 
 inspectAllLeadings
-   : (ALL | LEADING) inspectAllLeading+
+   : (ALL | LEADING | TRAILING | FIRST) inspectAllLeading+
    ;
 
 inspectReplacingAllLeadings
-   : (ALL | LEADING | FIRST) inspectReplacingAllLeading+
+   : (ALL | LEADING | TRAILING | FIRST) inspectReplacingAllLeading+
    ;
 
 inspectAllLeading
