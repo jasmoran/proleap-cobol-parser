@@ -3201,8 +3201,8 @@ SLASHCHAR : '/';
 NONNUMERICLITERAL : STRINGLITERAL | DBCSLITERAL | HEXNUMBER  | NULLTERMINATED;
 
 fragment HEXNUMBER :
-	X '"' [0-9A-F]+ '"'
-	| X '\'' [0-9A-F]+ '\''
+	(H | X) '"' [0-9A-F]+ '"'
+	| (H | X) '\'' [0-9A-F]+ '\''
 ;
 
 fragment NULLTERMINATED :
