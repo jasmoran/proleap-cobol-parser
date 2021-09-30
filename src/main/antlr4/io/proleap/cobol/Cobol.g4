@@ -1817,7 +1817,7 @@ readInto
    ;
 
 readWith
-   : WITH? ((KEPT | NO) LOCK | WAIT)
+   : WITH? ((KEPT | NO)? LOCK | WAIT)
    ;
 
 readKey
