@@ -1809,7 +1809,7 @@ purgeStatement
 // read statement
 
 readStatement
-   : READ fileName NEXT? RECORD? readInto? readWith? readKey? invalidKeyPhrase? notInvalidKeyPhrase? atEndPhrase? notAtEndPhrase? END_READ?
+   : READ fileName (NEXT | PREVIOUS)? RECORD? readInto? readWith? readKey? invalidKeyPhrase? notInvalidKeyPhrase? atEndPhrase? notAtEndPhrase? END_READ?
    ;
 
 readInto
@@ -2576,7 +2576,7 @@ cobolWord
    | MMDDYYYY
    | NAMED | NATIONAL | NATIONAL_EDITED | NETWORK | NO_ECHO | NUMERIC_DATE | NUMERIC_TIME
    | ODT | ORDERLY | OVERLINE | OWN
-   | PASSWORD | PORT | PRINTER | PRIVATE | PROCESS | PROGRAM | PROMPT
+   | PASSWORD | PORT | PREVIOUS | PRINTER | PRIVATE | PROCESS | PROGRAM | PROMPT
    | READER | REAL | RECEIVED | RECURSIVE | REF | REMOTE | REMOVE | REQUIRED | REVERSE_VIDEO
    | SAVE | SECURE | SHARED | SHAREDBYALL | SHAREDBYRUNUNIT | SHARING | SHORT_DATE | SQL | SYMBOL
    | TASK | THREAD | THREAD_LOCAL | TIMER | TODAYS_DATE | TODAYS_NAME | TRUNCATED | TYPEDEF
@@ -2994,6 +2994,7 @@ POINTER : P O I N T E R;
 POSITION : P O S I T I O N;
 POSITIVE : P O S I T I V E;
 PORT : P O R T;
+PREVIOUS : P R E V I O U S;
 PRINTER : P R I N T E R;
 PRINTING : P R I N T I N G;
 PRIVATE : P R I V A T E;
