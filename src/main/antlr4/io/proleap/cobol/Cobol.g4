@@ -1669,7 +1669,7 @@ moveStatement
    ;
 
 moveToStatement
-   : moveToSendingArea TO identifier+
+   : moveToSendingArea TO (identifier COMMACHAR?)* identifier
    ;
 
 moveToSendingArea
@@ -1677,7 +1677,7 @@ moveToSendingArea
    ;
 
 moveCorrespondingToStatement
-   : (CORRESPONDING | CORR) moveCorrespondingToSendingArea TO identifier+
+   : (CORRESPONDING | CORR) moveCorrespondingToSendingArea TO (identifier COMMACHAR?)* identifier
    ;
 
 moveCorrespondingToSendingArea
