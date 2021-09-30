@@ -301,11 +301,11 @@ accessModeClause
    ;
 
 recordKeyClause
-   : RECORD KEY? IS? qualifiedDataName passwordClause? (WITH? DUPLICATES)?
+   : RECORD KEY? IS? qualifiedDataName (EQUALCHAR qualifiedDataName+)? passwordClause? (WITH? DUPLICATES)?
    ;
 
 alternateRecordKeyClause
-   : ALTERNATE RECORD KEY? IS? qualifiedDataName passwordClause? (WITH? DUPLICATES)?
+   : ALTERNATE RECORD KEY? IS? qualifiedDataName (EQUALCHAR qualifiedDataName+)? passwordClause? (WITH? DUPLICATES)?
    ;
 
 passwordClause

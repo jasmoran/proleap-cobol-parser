@@ -129,7 +129,7 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		if (result == null) {
 			result = new AlternateRecordKeyClauseImpl(programUnit, ctx);
 
-			final Call dataCall = createCall(ctx.qualifiedDataName());
+			final Call dataCall = createCall(ctx.qualifiedDataName(0));
 			result.setDataCall(dataCall);
 
 			if (ctx.passwordClause() != null) {
@@ -342,7 +342,7 @@ public class FileControlEntryImpl extends CobolDivisionElementImpl implements Fi
 		if (result == null) {
 			result = new RecordKeyClauseImpl(programUnit, ctx);
 
-			final Call recordKeyCall = createCall(ctx.qualifiedDataName());
+			final Call recordKeyCall = createCall(ctx.qualifiedDataName(0));
 			result.setRecordKeyCall(recordKeyCall);
 
 			if (ctx.passwordClause() != null) {
