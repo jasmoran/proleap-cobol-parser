@@ -31,7 +31,9 @@ import io.proleap.cobol.CobolParser.ComputeStoreContext;
 import io.proleap.cobol.CobolParser.ContinueStatementContext;
 import io.proleap.cobol.CobolParser.DeleteStatementContext;
 import io.proleap.cobol.CobolParser.DisableStatementContext;
+import io.proleap.cobol.CobolParser.DisplayAtContext;
 import io.proleap.cobol.CobolParser.DisplayOperandContext;
+import io.proleap.cobol.CobolParser.DisplayOperandOptionsContext;
 import io.proleap.cobol.CobolParser.DisplayStatementContext;
 import io.proleap.cobol.CobolParser.DivideStatementContext;
 import io.proleap.cobol.CobolParser.EnableStatementContext;
@@ -568,11 +570,15 @@ public class ScopeImpl extends CobolDivisionElementImpl implements Scope {
 			// operands
 			for (final DisplayOperandContext displayOperandContext : ctx.displayOperand()) {
 				result.addOperand(displayOperandContext);
-			}
 
-			// at
-			if (ctx.displayAt() != null) {
-				result.addAt(ctx.displayAt());
+				// at
+				DisplayOperandOptionsContext options = displayOperandContext.displayOperandOptions();
+				if (options != null) {
+					List<DisplayAtContext> displayAt = options.displayAt();
+					if (displayAt != null && !displayAt.isEmpty()) {
+						result.addAt(displayAt.get(0));
+					}
+				}
 			}
 
 			// upon

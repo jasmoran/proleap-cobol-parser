@@ -1357,16 +1357,25 @@ disableStatement
 // display statement
 
 displayStatement
-   : DISPLAY displayOperand+ displayAt? displayUpon? displayWith? onExceptionClause? notOnExceptionClause? END_DISPLAY?
+   : DISPLAY displayOperand+ displayUpon? displayWith? onExceptionClause? notOnExceptionClause? END_DISPLAY?
    ;
 
 displayOperand
-   : identifier | literal
+   : (identifier | literal) displayUnit? displayOperandOptions?
+   ;
+
+displayOperandOptions
+   : WITH? (displayBeep | displayBlink | displayControl | displayConvert | displayErase |
+     displayHighLow | displayAt | displayMode | displayReverse | displaySize)+
    ;
 
 displayAt
-   : AT (identifier | literal)
+   : (AT (identifier | literal)) |
+     (AT? (displayAtLine displayAtCol? | displayAtCol displayAtLine? ))
    ;
+
+displayAtCol: (COLUMN | COL | POSITION) (identifier | literal);
+displayAtLine: LINE (identifier | literal);
 
 displayUpon
    : UPON (mnemonicName | environmentName)
@@ -1375,6 +1384,17 @@ displayUpon
 displayWith
    : WITH? NO ADVANCING
    ;
+
+displayUnit: UNIT (identifier | literal);
+displayBeep: BEEP | BELL;
+displayBlink: BLINK;
+displayControl: CONTROL (identifier | literal);
+displayConvert: CONVERT;
+displayErase: ERASE (EOL | EOS)?;
+displayHighLow: HIGH | HIGHLIGHT | LOW | LOWLIGHT;
+displayMode: MODE IS? BLOCK;
+displayReverse: REVERSE | REVERSED | REVERSE_VIDEO;
+displaySize: SIZE (identifier | literal);
 
 // divide statement
 
@@ -2577,7 +2597,7 @@ cobolWord
    | NAMED | NATIONAL | NATIONAL_EDITED | NETWORK | NO_ECHO | NUMERIC_DATE | NUMERIC_TIME
    | ODT | ORDERLY | OVERLINE | OWN
    | PARAGRAPH | PASSWORD | PORT | PREVIOUS | PRINTER | PRIVATE | PROCESS | PROGRAM | PROMPT
-   | READER | REAL | RECEIVED | RECURSIVE | REF | REMOTE | REMOVE | REQUIRED | REVERSE_VIDEO
+   | READER | REAL | RECEIVED | RECURSIVE | REF | REMOTE | REMOVE | REQUIRED | REVERSE | REVERSE_VIDEO
    | SAVE | SECURE | SHARED | SHAREDBYALL | SHAREDBYRUNUNIT | SHARING | SHORT_DATE | SQL | SYMBOL
    | TASK | THREAD | THREAD_LOCAL | TIMER | TODAYS_DATE | TODAYS_NAME | TRUNCATED | TYPEDEF
    | UNDERLINE
@@ -2740,6 +2760,7 @@ CONTROL_POINT : C O N T R O L MINUSCHAR P O I N T;
 CONTROLS : C O N T R O L S;
 CONVENTION : C O N V E N T I O N;
 CONVERTING : C O N V E R T I N G;
+CONVERT : C O N V E R T;
 COPY : C O P Y;
 CORR : C O R R;
 CORRESPONDING : C O R R E S P O N D I N G;
@@ -2872,6 +2893,7 @@ GRID : G R I D;
 GROUP : G R O U P;
 HEADING : H E A D I N G;
 HIGHLIGHT : H I G H L I G H T;
+HIGH : H I G H;
 HIGH_VALUE : H I G H MINUSCHAR V A L U E;
 HIGH_VALUES : H I G H MINUSCHAR V A L U E S;
 I_O : I MINUSCHAR O;
@@ -2933,6 +2955,7 @@ LONG_DATE : L O N G MINUSCHAR D A T E;
 LONG_TIME : L O N G MINUSCHAR T I M E;
 LOWER : L O W E R;
 LOWLIGHT : L O W L I G H T;
+LOW : L O W;
 LOW_VALUE : L O W MINUSCHAR V A L U E;
 LOW_VALUES : L O W MINUSCHAR V A L U E S;
 MEMORY : M E M O R Y;
@@ -3046,6 +3069,7 @@ REQUIRED : R E Q U I R E D;
 RERUN : R E R U N;
 RESERVE : R E S E R V E;
 REVERSE_VIDEO : R E V E R S E MINUSCHAR V I D E O;
+REVERSE : R E V E R S E;
 RESET : R E S E T;
 RETURN : R E T U R N;
 RETURN_CODE : R E T U R N MINUSCHAR C O D E;
